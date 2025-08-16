@@ -31,7 +31,7 @@ interface Coin {
   collected: boolean;
 }
 
-const GAME_WIDTH = 800;
+const GAME_WIDTH = 900;
 const GAME_HEIGHT = 600;
 const LANE_WIDTH = GAME_WIDTH / 3;
 const PLAYER_WIDTH = 40;
@@ -348,6 +348,9 @@ export const GameEngine = () => {
         width={GAME_WIDTH}
         height={GAME_HEIGHT}
         className="game-canvas"
+        style={{
+          imageRendering: 'crisp-edges'
+        }}
       />
       
       <div className="game-ui">

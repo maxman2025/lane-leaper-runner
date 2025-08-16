@@ -106,12 +106,16 @@ All colors MUST be HSL.
   .game-container {
     @apply relative w-full h-screen overflow-hidden flex items-center justify-center;
     background: var(--gradient-game-bg);
+    padding: 20px;
   }
 
   .game-canvas {
     @apply border-2 border-game-lane-line rounded-lg shadow-2xl;
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 100%;
+    height: 100%;
+    max-width: min(90vw, calc(90vh * 4/3));
+    max-height: min(90vh, calc(90vw * 3/4));
+    object-fit: contain;
   }
 
   .game-ui {
