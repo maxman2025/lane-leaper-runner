@@ -104,8 +104,14 @@ All colors MUST be HSL.
 
 @layer components {
   .game-container {
-    @apply relative w-full h-screen overflow-hidden;
+    @apply relative w-full h-screen overflow-hidden flex items-center justify-center;
     background: var(--gradient-game-bg);
+  }
+
+  .game-canvas {
+    @apply border-2 border-game-lane-line rounded-lg shadow-2xl;
+    max-width: 90vw;
+    max-height: 90vh;
   }
 
   .game-ui {

@@ -81,21 +81,29 @@ export const GameEngine = () => {
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
     // Draw track
-    const trackGradient = ctx.createLinearGradient(0, GAME_HEIGHT - TRACK_HEIGHT, 0, GAME_HEIGHT);
+    const trackY = GAME_HEIGHT - TRACK_HEIGHT;
+    const trackGradient = ctx.createLinearGradient(0, trackY, 0, GAME_HEIGHT);
     trackGradient.addColorStop(0, 'hsl(240, 30%, 12%)');
     trackGradient.addColorStop(1, 'hsl(240, 50%, 8%)');
     ctx.fillStyle = trackGradient;
-    ctx.fillRect(0, GAME_HEIGHT - TRACK_HEIGHT, GAME_WIDTH, TRACK_HEIGHT);
+    ctx.fillRect(0, trackY, GAME_WIDTH, TRACK_HEIGHT);
 
-    // Draw lane lines
+    // Draw track border
     ctx.strokeStyle = 'hsl(240, 50%, 25%)';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, trackY);
+    ctx.lineTo(GAME_WIDTH, trackY);
+    ctx.stroke();
+    // Draw lane divider lines
+    ctx.strokeStyle = 'hsl(240, 50%, 30%)';
     ctx.lineWidth = 2;
-    ctx.setLineDash([20, 20]);
+    ctx.setLineDash([30, 15]);
     
     for (let i = 1; i < 3; i++) {
       ctx.beginPath();
-      ctx.moveTo(i * LANE_WIDTH, GAME_HEIGHT - TRACK_HEIGHT);
-      ctx.lineTo(i * LANE_WIDTH, GAME_HEIGHT);
+      ctx.moveTo(i * LANE_WIDTH, trackY + 20);
+      ctx.lineTo(i * LANE_WIDTH, GAME_HEIGHT - 20);
       ctx.stroke();
     }
     ctx.setLineDash([]);
@@ -339,7 +347,7 @@ export const GameEngine = () => {
         ref={canvasRef}
         width={GAME_WIDTH}
         height={GAME_HEIGHT}
-        className="mx-auto border-2 border-game-lane-line rounded-lg shadow-2xl"
+        className="game-canvas"
       />
       
       <div className="game-ui">
