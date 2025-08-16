@@ -8,35 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Game-themed electric color palette */
+    --background: 240 100% 4%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 50% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 50% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 270 100% 65%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 195 100% 55%;
+    --secondary-foreground: 240 100% 4%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 30% 15%;
+    --muted-foreground: 240 10% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 240 100% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 30% 20%;
+    --input: 240 30% 20%;
+    --ring: 270 100% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Game-specific colors */
+    --game-track: 240 30% 12%;
+    --game-lane-line: 240 50% 25%;
+    --game-player: 270 100% 65%;
+    --game-obstacle: 0 84% 60%;
+    --game-coin: 45 100% 60%;
+    --game-ui-glow: 270 100% 65%;
+    --game-success: 120 100% 50%;
+    
+    /* Gradients */
+    --gradient-game-bg: linear-gradient(135deg, hsl(240 100% 4%), hsl(270 80% 15%));
+    --gradient-track: linear-gradient(180deg, hsl(240 30% 12%), hsl(240 50% 8%));
+    --gradient-button: linear-gradient(135deg, hsl(270 100% 65%), hsl(195 100% 55%));
+    --gradient-glow: radial-gradient(circle, hsl(270 100% 65% / 0.3), transparent);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,50 +77,130 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode uses same game colors for consistency */
+    --background: 240 100% 4%;
+    --foreground: 0 0% 100%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  canvas {
+    display: block;
+  }
+}
+
+@layer components {
+  .game-container {
+    @apply relative w-full h-screen overflow-hidden;
+    background: var(--gradient-game-bg);
+  }
+
+  .game-ui {
+    @apply absolute top-0 left-0 w-full h-full pointer-events-none z-10;
+  }
+
+  .game-ui > * {
+    @apply pointer-events-auto;
+  }
+
+  .game-score {
+    @apply absolute top-6 left-1/2 transform -translate-x-1/2;
+    @apply text-4xl font-bold text-foreground;
+    @apply filter drop-shadow-lg;
+    text-shadow: 0 0 20px hsl(var(--game-ui-glow) / 0.5);
+  }
+
+  .game-button {
+    @apply px-8 py-4 rounded-lg font-bold text-lg;
+    @apply transition-all duration-300 transform;
+    @apply shadow-lg hover:shadow-xl hover:scale-105;
+    background: var(--gradient-button);
+    border: 2px solid hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .game-button:hover {
+    @apply scale-110;
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.6);
+  }
+
+  .game-button:active {
+    @apply scale-95;
+  }
+
+  .game-menu {
+    @apply absolute inset-0 flex flex-col items-center justify-center;
+    @apply bg-black/50 backdrop-blur-sm;
+  }
+
+  .game-title {
+    @apply text-6xl font-bold mb-8 text-center;
+    background: var(--gradient-button);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  .game-instructions {
+    @apply text-lg text-muted-foreground mb-8 text-center max-w-md;
+    @apply opacity-80;
+  }
+
+  .game-track {
+    @apply absolute bottom-0 w-full;
+    background: var(--gradient-track);
+    border-top: 2px solid hsl(var(--game-lane-line));
+  }
+
+  .lane-line {
+    @apply absolute top-0 w-1 h-full;
+    background: linear-gradient(180deg, 
+      transparent, 
+      hsl(var(--game-lane-line)) 20%, 
+      hsl(var(--game-lane-line)) 80%, 
+      transparent
+    );
+  }
+
+  .player-character {
+    @apply absolute transition-all duration-200 ease-out;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  .obstacle {
+    @apply absolute rounded-lg;
+    background: hsl(var(--game-obstacle));
+    box-shadow: 0 4px 12px hsl(var(--game-obstacle) / 0.4);
+  }
+
+  .coin {
+    @apply absolute rounded-full;
+    background: hsl(var(--game-coin));
+    box-shadow: 0 0 20px hsl(var(--game-coin) / 0.6);
+  }
+}
+
+@layer utilities {
+  .glow {
+    filter: drop-shadow(0 0 20px currentColor);
+  }
+
+  .glow-strong {
+    filter: drop-shadow(0 0 30px currentColor) drop-shadow(0 0 60px currentColor);
   }
 }
