@@ -1,73 +1,164 @@
-# Welcome to your Lovable project
+# Lane Leaper Runner 🏃‍♂️
 
-## Project info
+A completely rewritten and enhanced endless runner game built with React, TypeScript, and Canvas API. Experience smooth gameplay with stunning visuals, power-ups, and challenging obstacles!
 
-**URL**: https://lovable.dev/projects/1b27e3b3-9f1c-4eb6-a97b-52be8b4ef348
+## ✨ New Features
 
-## How can I edit this code?
+### 🎮 Enhanced Gameplay
 
-There are several ways of editing your application.
+- **Multiple Obstacle Types**: Barriers, trains, tunnels, spikes, and lasers
+- **Three Coin Types**: Normal (1pt), Gold (5pts), Diamond (10pts)
+- **Power-up System**: Shield, Speed, Magnet, and Health bonuses
+- **Health System**: Player health with visual health bar
+- **Level Progression**: Increasing difficulty as you progress
+- **High Score Tracking**: Persistent high score system
 
-**Use Lovable**
+### 🎨 Visual Improvements
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1b27e3b3-9f1c-4eb6-a97b-52be8b4ef348) and start prompting.
+- **Animated Background**: Dynamic starfield with moving stars
+- **Enhanced Graphics**: Glowing effects, shadows, and particle systems
+- **Smooth Animations**: Rotating obstacles, coins, and power-ups
+- **Particle Effects**: Visual feedback for collisions and collections
+- **Modern UI**: Clean, responsive interface with game state management
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🎯 Game Mechanics
 
-**Use your preferred IDE**
+- **Improved Physics**: Better jumping mechanics with velocity-based movement
+- **Collision Detection**: Precise hitbox detection with invulnerability periods
+- **Power-up Effects**:
+  - 🛡️ Shield: Protects from damage for 10 seconds
+  - ⚡ Speed: Temporary speed boost
+  - 🧲 Magnet: Attracts nearby coins
+  - ❤️ Health: Restores player health
+- **Pause System**: Pause/resume functionality
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🎮 Controls
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Movement**: WASD or Arrow Keys
+- **Jump**: Space, W, or Up Arrow
+- **Slide**: S or Down Arrow
+- **Pause**: P or Escape
+- **Start Game**: Space (from menu)
 
-Follow these steps:
+## 🚀 Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js 16+
+- npm or yarn
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+cd lane-leaper-runner
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## 🛠️ Technical Details
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Built With
 
-## What technologies are used for this project?
+- **React 18** with TypeScript
+- **Canvas API** for high-performance graphics
+- **Tailwind CSS** for styling
+- **Vite** for fast development and building
+- **Framer Motion** for smooth animations
 
-This project is built with:
+### Architecture
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Component-based** React architecture
+- **Custom hooks** for game logic
+- **Canvas rendering** for smooth 60fps gameplay
+- **State management** with React hooks
+- **Event-driven** input handling
 
-## How can I deploy this project?
+### Performance Features
 
-Simply open [Lovable](https://lovable.dev/projects/1b27e3b3-9f1c-4eb6-a97b-52be8b4ef348) and click on Share -> Publish.
+- **RequestAnimationFrame** for smooth game loop
+- **Optimized rendering** with canvas context management
+- **Efficient collision detection** algorithms
+- **Memory management** for particles and game objects
 
-## Can I connect a custom domain to my Lovable project?
+## 🎯 Game Objectives
 
-Yes, you can!
+1. **Survive**: Avoid obstacles and stay alive as long as possible
+2. **Collect**: Gather coins to increase your score
+3. **Power Up**: Use power-ups strategically to enhance gameplay
+4. **Progress**: Advance through levels for increased challenge
+5. **Compete**: Beat your high score and challenge friends
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔧 Customization
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Game Settings
+
+- Adjust game speed, jump height, and gravity in constants
+- Modify obstacle spawn rates and patterns
+- Customize power-up durations and effects
+- Change visual effects and particle systems
+
+### Visual Themes
+
+- Modify color palettes in CSS variables
+- Adjust glow effects and shadows
+- Customize animations and transitions
+- Add new obstacle and power-up types
+
+## 🐛 Known Issues & Future Improvements
+
+### Current Features
+
+- ✅ Smooth 60fps gameplay
+- ✅ Multiple obstacle types
+- ✅ Power-up system
+- ✅ Health and damage system
+- ✅ Particle effects
+- ✅ Responsive UI
+- ✅ Pause functionality
+
+### Planned Enhancements
+
+- 🔄 Mobile touch controls
+- 🔄 Sound effects and music
+- 🔄 More power-up types
+- 🔄 Boss battles
+- 🔄 Multiplayer support
+- 🔄 Achievement system
+- 🔄 Custom character skins
+
+## 📱 Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by classic endless runner games
+- Built with modern web technologies
+- Designed for smooth, engaging gameplay
+- Optimized for performance and accessibility
+
+---
+
+**Enjoy the game! 🎮✨**
